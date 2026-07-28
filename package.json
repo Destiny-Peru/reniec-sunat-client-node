@@ -1,0 +1,60 @@
+{
+  "name": "@destiny-peru/reniec-sunat-client",
+  "version": "0.1.0",
+  "description": "Cliente oficial TypeScript para la API RENIEC SUNAT de Destiny Peru.",
+  "keywords": [
+    "reniec",
+    "sunat",
+    "dni",
+    "ruc",
+    "peru",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Destiny Peru",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Destiny-Peru/reniec-sunat-client-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Destiny-Peru/reniec-sunat-client-node/issues"
+  },
+  "homepage": "https://github.com/Destiny-Peru/reniec-sunat-client-node#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run check && npm test && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
