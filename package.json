@@ -1,6 +1,6 @@
 {
   "name": "@destiny-peru/reniec-sunat-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cliente oficial TypeScript para la API RENIEC SUNAT de Destiny Peru.",
   "keywords": [
     "reniec",
