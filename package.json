@@ -47,7 +47,8 @@
     "prepublishOnly": "npm run check && npm test && npm run build"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "overrides": {
     "esbuild": "^0.28.1"
