@@ -11,8 +11,48 @@ estructurados. No requiere dependencias en tiempo de ejecucion.
 
 ## Instalacion
 
+El paquete se distribuye mediante GitHub Packages. Agrega este archivo
+`.npmrc` en la raiz del proyecto consumidor:
+
+```ini
+@destiny-peru:registry=https://npm.pkg.github.com
+```
+
+Para instalarlo localmente necesitas un Personal Access Token classic con
+permiso `read:packages`. Configura el token como variable de entorno, sin
+guardarlo en el repositorio:
+
+```powershell
+$env:NODE_AUTH_TOKEN = "github_pat_o_ghp_aqui"
+npm config set //npm.pkg.github.com/:_authToken $env:NODE_AUTH_TOKEN
+```
+
+En Linux o macOS:
+
+```bash
+export NODE_AUTH_TOKEN="github_pat_o_ghp_aqui"
+npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN"
+```
+
+Luego instala normalmente:
+
 ```bash
 npm install @destiny-peru/reniec-sunat-client
+```
+
+En GitHub Actions se puede utilizar `GITHUB_TOKEN` si el repositorio consumidor
+tiene acceso de lectura al paquete:
+
+```yaml
+- uses: actions/setup-node@v5
+  with:
+    node-version: 24
+    registry-url: https://npm.pkg.github.com
+    scope: "@destiny-peru"
+
+- run: npm ci
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Uso rapido
@@ -124,3 +164,25 @@ Para verificar el contenido que se publicara:
 ```bash
 npm pack --dry-run
 ```
+
+## Publicacion
+
+El proyecto usa Release Please y Conventional Commits para administrar las
+versiones automaticamente:
+
+1. Un `feat:` genera una version minor.
+2. Un `fix:` genera una version patch.
+3. Un `feat!:` o `BREAKING CHANGE:` genera una version major.
+4. Release Please crea o actualiza el PR de release.
+5. Al fusionar el PR, se crea el tag `vX.Y.Z` y el GitHub Release.
+6. El paquete de esa version se prueba, compila y publica en GitHub Packages.
+
+La primera version publica sera `1.0.0`. El workflow de Release Please parte
+del manifest `0.0.0` para crear ese release inicial. Despues, el manifest,
+`package.json`, `package-lock.json` y `CHANGELOG.md` se actualizan mediante el
+PR de release.
+
+El workflow `.github/workflows/publish-package.yml` tambien puede ejecutarse
+manualmente desde `Actions > Publish npm package > Run workflow` como mecanismo
+de recuperacion. Un registro npm no permite reemplazar una version que ya fue
+publicada.
