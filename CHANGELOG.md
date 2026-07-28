@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Destiny-Peru/reniec-sunat-client-node/compare/v1.0.0...v1.0.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* update workflows and README for public npm package publishing ([ae97a54](https://github.com/Destiny-Peru/reniec-sunat-client-node/commit/ae97a54cfa62f20b7455ef0976fea245b5f5a8a9))
+
 ## 1.0.0 (2026-07-28)
 
 
