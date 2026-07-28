@@ -15,9 +15,7 @@ permissions:
 jobs:
   release-please:
     name: Prepare or create release
-    runs-on:
-      group: destiny-peru-ci-cd
-      labels: [self-hosted, Linux, X64]
+    runs-on: ubuntu-latest
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
       version: ${{ steps.release.outputs.version }}
